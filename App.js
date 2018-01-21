@@ -1,61 +1,41 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 
 import React, { Component } from 'react';
 import {
-  Platform,
+  AppRegistry,
   StyleSheet,
   Text,
   View,
-  Button,
-  Alert
+  Image,
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import Icon from 'react-native-vector-icons/Ionicons'
 
-export default class App extends Component<{}> {
-  onPress() {
-    // Works on both iOS and Android
-    Alert.alert(
-      'Alert Title',
-      'My Alert Msg',
-      [
-        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ],
-      { cancelable: false }
-    )
-  }
+export default class PlatziMusic extends Component {
   render() {
+    const image = 'https://lastfm-img2.akamaized.net/i/u/300x300/31a51f6e3ec647c8997150ec837891c7.png'
+    const name = 'David Bowie'
+    const likes = 200
+    const comments = 140
+
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Hey Victor, Welcome to React Native!
-        </Text>
-        <Button
-          onPress={this.onPress}
-          title="Learn More"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-        
+        <View style={styles.artistBox}>
+          <Image style={styles.image} source={{ uri: image }} />
+          <View style={styles.info}>
+            <Text style={styles.name}>{name}</Text>
+            <View style={styles.row}>
+              <View style={styles.iconContainer}>
+                <Icon name="ios-heart-outline" size={30} color="gray" />
+                <Text style={styles.count}>{likes}</Text>
+              </View>
+              <View style={styles.iconContainer}>
+                <Icon name="ios-chatboxes-outline" size={30} color="gray" />
+                <Text style={styles.count}>{comments}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
       </View>
-    
     );
   }
 }
@@ -63,18 +43,38 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: 'lightgray',
+    paddingTop: 50,
+  },
+  artistBox: {
+    backgroundColor: 'white',
+    flexDirection: 'row'
+  },
+  image: {
+    width: 150,
+    height: 150,
+  },
+  info: {
+    flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: 'center'
   },
-  welcome: {
+  name: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    marginTop: 10,
+    color: '#333'
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  row: {
+    flexDirection: 'row',
+    marginHorizontal: 30,
+    marginTop: 15
   },
+  iconContainer: {
+    flex: 1,
+    alignItems: 'center'
+  },
+  count: {
+    color: 'gray'
+  }
 });
