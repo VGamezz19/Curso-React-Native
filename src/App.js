@@ -1,32 +1,34 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
   View,
+  ActivityIndicator
 } from 'react-native';
 
-import ArtistList from './ArtistList'
+import Icon from 'react-native-vector-icons/Ionicons'
 
-export default class proyectodiez extends Component {
+import ArtistList from './ArtistList'
+import { getArtists } from './api-client'
+import renderIf from './if-conditional';
+
+export default class PlatziMusic extends Component {
+  state = {
+    artists: [],
+    loader : true
+  }
+
   render() {
-    const artist = {
-      image: 'https://lastfm-img2.akamaized.net/i/u/300x300/31a51f6e3ec647c8997150ec837891c7.png',
-      name: 'David Bowie',
-      likes: 200,
-      comments: 140
-    }
+    const artists = this.state.artists
     
+    getArtists().then(data => this.setState({ artists: data, loader:false }))
+
     return (
-      <View style = {styles.container}>
-        <ArtistList artist = {artist}/>
+      <View style={styles.container}>
+        {/* Loader */}
+        {renderIf(this.state.loader, <ActivityIndicator size="large" color="#0000ff" /> )}
+        {renderIf(!!this.state.artists, <ArtistList artists={artists} /> )}  
       </View>
-       
     );
   }
 }
@@ -38,3 +40,4 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
 });
+
