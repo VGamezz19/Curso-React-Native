@@ -13,7 +13,9 @@ const {
 
 
 export default class LoginView extends Component {
+  
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text>Bienvenidos a PlatziMusic</Text>
@@ -28,7 +30,8 @@ export default class LoginView extends Component {
               } else {
                 AccessToken.getCurrentAccessToken().then(
                   (data) => {
-                    alert(data.accessToken.toString())
+                   // alert(data.accessToken.toString())
+                    navigate('Home')
                   }
                 )
               }

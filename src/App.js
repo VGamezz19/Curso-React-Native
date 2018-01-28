@@ -8,6 +8,13 @@ import ArtistDetail from './ArtistDetailView'
 import Login from './LoginView'
 
 const RootNavigator = StackNavigator({
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      headerTitle: 'Login',
+    }
+  },
+
   Home: {
     screen: HomeView,
     navigationOptions: {
@@ -23,14 +30,5 @@ const RootNavigator = StackNavigator({
   },
 });
 
-const LooginNavigator = StackNavigator ({
-  Login: {
-    screen: Login,
-    navigationOptions: {
-      headerTitle: 'Login',
-    },
 
-  },
-})
-
-export default LooginNavigator;
+export default RootNavigator;
