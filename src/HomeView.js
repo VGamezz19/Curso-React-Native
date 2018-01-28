@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
+  ActivityIndicator
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -17,20 +18,27 @@ import { getArtists } from './api-client'
 
 export default class HomeView extends Component {
   state = {
-    artists: []
+    artists: [],
+    load: true
   }
 
   componentDidMount() {
     getArtists()
-      .then(data => this.setState({ artists: data }))
+      .then(data => this.setState({ artists: data, load: false}))
   }
 
   render() {
     const artists = this.state.artists
 
+    if(this.state.load) {
+      contentHome = <ActivityIndicator size="large" color="#0000ff" />
+    } else {
+      contentHome = <ArtistList artists={artists} navigation ={this.props.navigation}/>
+    }
+
     return (
       <View style={styles.container}>
-        <ArtistList artists={artists} navigation ={this.props.navigation}/>
+        {contentHome}
       </View>
     );
   }
