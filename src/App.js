@@ -3,41 +3,23 @@ import {
   AppRegistry,
   StyleSheet,
   View,
-  ActivityIndicator
+  Platform,
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons'
+import {Scene, Router} from 'react-native-router-flux'
 
-import ArtistList from './ArtistList'
-import { getArtists } from './api-client'
-import renderIf from './if-conditional';
+import HomeView from './HomeView'
+import ArtistDetail from './ArtistDetailView'
 
-export default class PlatziMusic extends Component {
-  state = {
-    artists: [],
-    loader : true
-  }
-
+export default class App extends Component<{}>  {
   render() {
-    const artists = this.state.artists
-    
-    getArtists().then(data => this.setState({ artists: data, loader:false }))
+    const isAndroid = Platform.OS === 'android'
 
-    return (
-      <View style={styles.container}>
-        {/* Loader */}
-        {renderIf(this.state.loader, <ActivityIndicator size="large" color="#0000ff" /> )}
-        {renderIf(!!this.state.artists, <ArtistList artists={artists} /> )}  
-      </View>
-    );
+    return <Router>
+      <Scene key="root">
+        <Scene key="home" component={HomeView} hideNavBar />
+        <Scene key="artistDetail" component={ArtistDetail} hideNavBar={isAndroid} />
+      </Scene>
+    </Router>
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'lightgray',
-    paddingTop: 50,
-  },
-});
-
