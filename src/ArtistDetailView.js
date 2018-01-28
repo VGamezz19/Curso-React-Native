@@ -11,6 +11,7 @@ import ArtistBox from './ArtistBox'
 export default class ArtistDetailView extends Component {
   render() {
     const artist = this.props.navigation.state.params
+    console.warn("ArtistDetail",this.props.navigation.state.params)
     return (
       <View style={styles.container}>
         <ArtistBox artist={artist} />

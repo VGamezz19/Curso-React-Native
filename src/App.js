@@ -5,6 +5,7 @@ import { StackNavigator } from 'react-navigation';
 
 import HomeView from './HomeView'
 import ArtistDetail from './ArtistDetailView'
+import Login from './LoginView'
 
 const RootNavigator = StackNavigator({
   Home: {
@@ -22,4 +23,14 @@ const RootNavigator = StackNavigator({
   },
 });
 
-export default RootNavigator;
+const LooginNavigator = StackNavigator ({
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      headerTitle: 'Login',
+    },
+
+  },
+})
+
+export default LooginNavigator;
