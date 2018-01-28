@@ -47,12 +47,16 @@ export default class ArtistList extends Component {
   }
 
   render() {
+
+    const { navigate } = this.props.navigation;
     return (
       <ListView
         enableEmptySections={true}
         dataSource={this.state.dataSource}
         renderRow={(artist) => {
-          return <TouchableOpacity onPress={() => this.handlePress(artist)}>
+          return <TouchableOpacity  onPress={() =>
+            navigate('Details', artist = artist)
+          }>
             <ArtistBox artist={artist} />
           </TouchableOpacity>
         }}

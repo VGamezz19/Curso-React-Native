@@ -10,8 +10,7 @@ import ArtistBox from './ArtistBox'
 
 export default class ArtistDetailView extends Component {
   render() {
-    const artist = this.props.artist
-
+    const artist = this.props.navigation.state.params
     return (
       <View style={styles.container}>
         <ArtistBox artist={artist} />
@@ -24,6 +23,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'lightgray',
-    paddingTop: 70,
+    paddingTop: 5,
   },
 });
