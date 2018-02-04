@@ -5,27 +5,15 @@ import {
   Button,
   View
 } from 'react-native';
-import { auth } from 'firebase';
-const FBSDK = require('react-native-fbsdk');
-const {
+import FBSDK, {
   LoginButton,
   AccessToken
-} = FBSDK;
-import * as firebase from "firebase";
+} from 'react-native-fbsdk'
 
-// Initialize Firebase
-const config = {
-  apiKey: "AIzaSyAdkE66a5LilxjlyLOkS_C6tBYQ9pHhor4",
-  authDomain: "platzimusic-a1a8c.firebaseapp.com",
-  databaseURL: "https://platzimusic-a1a8c.firebaseio.com",
-  projectId: "platzimusic-a1a8c",
-  storageBucket: "platzimusic-a1a8c.appspot.com",
-  messagingSenderId: "711372680696"
-};
-firebase.initializeApp(config);
+import firebase, { firebaseAuth } from "./firebase";
 
 const { FacebookAuthProvider } = firebase.auth
-const firebaseAuth = firebase.auth()
+//const firebaseAuth = firebase.auth()
 
 
 export default class LoginView extends Component {
