@@ -7,6 +7,9 @@ import HomeView from './HomeView'
 import ArtistDetail from './ArtistDetailView'
 import Login from './LoginView'
 
+
+
+
 const RootNavigator = StackNavigator({
   Login: {
     screen: Login,
